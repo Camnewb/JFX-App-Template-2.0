@@ -11,7 +11,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage){
-        mainWindow = new Window(primaryStage);
+        mainWindow = new Window(primaryStage, "Application");
         interfaceManager = new InterfaceManager(mainWindow);
         Tester tester = new Tester(interfaceManager);
         mainWindow.getSceneManager().setScene(tester.draw());
