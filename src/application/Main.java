@@ -6,14 +6,16 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    public InterfaceManager interfaceManager;
+    private Window mainWindow;
+    private InterfaceManager interfaceManager;
 
     @Override
     public void start(Stage primaryStage){
-
-        this.interfaceManager = new InterfaceManager(primaryStage);
+        mainWindow = new Window(primaryStage);
+        interfaceManager = new InterfaceManager(mainWindow);
+        Tester tester = new Tester(interfaceManager);
+        mainWindow.getSceneManager().setScene(tester.draw());
         interfaceManager.show();
-
     }
 
 

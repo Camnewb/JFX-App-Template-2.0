@@ -1,5 +1,6 @@
 package application.gui;
 
+import application.Window;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -10,17 +11,25 @@ import java.util.List;
  */
 public class InterfaceManager {
 
+    private Window mainWindow;
     private Stage primaryStage;
-    private List<Stage> extraWindows;
+    private List<Window> extraWindows;
 
-    public InterfaceManager(Stage primaryStage) {
-        this.primaryStage = primaryStage;
+    public InterfaceManager(Window window) {
+        this.mainWindow = window;
+        this.primaryStage = window.getStage();
         extraWindows = new ArrayList<>();
     }
 
-    public void openNewWindow(Stage window) {
+    public void openNewWindow(Window window) {
         extraWindows.add(window);
-        window.show();
+        window.getStage().show();
+    }
+
+    public void openNewWindow(Stage stage) {
+        Window window = new Window(stage);
+        extraWindows.add(window);
+        window.getStage().show();
     }
 
     public void show() {
@@ -29,11 +38,11 @@ public class InterfaceManager {
 
     public void showAll() {
         show();
-        extraWindows.forEach(Stage::show);
+        extraWindows.stream().map(Window::getStage).forEach(Stage::show);
     }
 
     public void hideWindows() {
-        extraWindows.forEach(Stage::hide);
+        extraWindows.stream().map(Window::getStage).forEach(Stage::hide);
     }
 
     public void hideAll() {
