@@ -2,6 +2,7 @@ package application;
 
 import application.gui.SceneManager;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * Class that combines a stage with its SceneManager
@@ -22,6 +23,10 @@ public class Window {
 
     public Window(Stage stage) {
         this(stage, "");
+    }
+
+    public Window(StageStyle stageStyle, String title) {
+        this(new Stage(stageStyle), title);
     }
 
     public Stage getStage() {
